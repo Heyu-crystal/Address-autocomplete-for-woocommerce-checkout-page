@@ -102,6 +102,8 @@ jobs:
         run: npx wp-env start
       - name: Seed the test shop
         run: npm run env:seed
+      - name: Check the test shop answers on pretty URLs
+        run: curl -sSf -o /dev/null http://localhost:8889/custom-address-form/
       - name: Run Playwright
         run: npx playwright test
         env:

@@ -155,6 +155,9 @@ update_option(
 	)
 );
 
-update_option( 'permalink_structure', '/%postname%/' );
+// Pretty permalinks. On Apache the .htaccess file comes from `wp rewrite structure --hard`
+// (see the env:seed script); this keeps the option and the rules in step either way.
+global $wp_rewrite;
+$wp_rewrite->set_permalink_structure( '/%postname%/' );
 flush_rewrite_rules();
 WP_CLI::success( 'Seeded. Product id: ' . $aafwc_product_id );
