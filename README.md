@@ -1,8 +1,10 @@
 # Address Autocomplete for WooCommerce
 
+Are you tired of finding an address autocomplete plugin that works for your woocommerce shop or using a paid plugin, where this feature should be publicly available? Please try this!
+
 Google address suggestions for the WooCommerce checkout. Customers type a few characters of their address, pick a suggestion, and the street, apartment, city, state, postcode and country are filled into their own fields.
 
-Free, by [HeyU Jewellery](https://github.com/heyu-crystal). **Use it on as many sites as you like, including commercial shops. It may not be sold.** See [Licence](#licence).
+Free, by [HeyU Jewellery](https://github.com/heyu-crystal) and please checkout my shop page if you like: [HeyU Jewellery](https://heyujewellery.com/). **Use it on as many sites as you like, including commercial shops. It may not be sold.** See [Licence](#licence).
 
 [![CI](https://github.com/heyu-crystal/address-autocomplete-for-wp-woocommerce-checkout-page/actions/workflows/ci.yml/badge.svg)](https://github.com/heyu-crystal/address-autocomplete-for-wp-woocommerce-checkout-page/actions/workflows/ci.yml)
 
