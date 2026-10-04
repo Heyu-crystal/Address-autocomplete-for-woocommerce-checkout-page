@@ -78,8 +78,10 @@ jobs:
         include:
           - woocommerce: latest-stable
             php: '8.3'
+          # PHP 7.4 is covered by the syntax job and PHPCompatibility: wp-env's PHP 7.4
+          # image (Debian bullseye) can no longer be built.
           - woocommerce: '10.9.4'
-            php: '7.4'
+            php: '8.1'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

@@ -17,7 +17,7 @@
 		"test:unit": "node --test \"tests/unit/**/*.test.js\"",
 		"test:e2e": "playwright test",
 		"env:start": "wp-env start && npm run env:seed",
-		"env:seed": "wp-env run tests-cli wp plugin activate woocommerce address-autocomplete-for-woocommerce && wp-env run tests-cli wp eval-file wp-content/plugins/address-autocomplete-for-woocommerce/tests/e2e/setup/seed.php",
+		"env:seed": "wp-env run tests-cli wp plugin activate address-autocomplete-for-woocommerce && wp-env run tests-cli wp eval-file wp-content/plugins/address-autocomplete-for-woocommerce/tests/e2e/setup/seed.php",
 		"env:stop": "wp-env stop",
 		"build:pot": "wp i18n make-pot . languages/address-autocomplete-for-woocommerce.pot --exclude=node_modules,vendor,tests,tools,build,test-results,playwright-report --slug=address-autocomplete-for-woocommerce --domain=address-autocomplete-for-woocommerce",
 		"build:zip": "bash bin/build-zip.sh",

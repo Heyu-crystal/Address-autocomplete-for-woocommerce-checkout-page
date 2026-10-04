@@ -37,7 +37,7 @@ _Screenshots are from the automated test shop, where Google's answers are simula
 | --- | --- | --- |
 | WordPress | 6.3+ | 7.1.2 |
 | WooCommerce | 8.0+ (WooCommerce's built-in list needs 10.3+) | 11.1.2 and 10.9.4 |
-| PHP | 7.4+ | 8.3 (end-to-end); syntax checked on 7.4 – 8.4 |
+| PHP | 7.4+ | 8.3 and 8.1 (end-to-end); syntax and compatibility checked for 7.4 – 8.4 |
 | Browsers | Current Chrome, Edge, Firefox, Safari (desktop and mobile) | Chromium (automated) |
 
 - **Checkouts:** WooCommerce block checkout, classic checkout, My Account addresses, classic cart shipping calculator.

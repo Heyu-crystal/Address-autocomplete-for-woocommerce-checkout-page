@@ -11,6 +11,11 @@
 
 // phpcs:disable WordPress.WP.GlobalVariablesOverride.Prohibited
 
+// wp-env activates WooCommerce itself (its folder is named after the zip, e.g. "woocommerce.latest-stable").
+if ( ! class_exists( 'WooCommerce' ) ) {
+	WP_CLI::error( 'WooCommerce is not active on this site. Install and activate it, then run the seed again.' );
+}
+
 update_option( 'woocommerce_default_country', 'AU:NSW' );
 update_option( 'woocommerce_currency', 'AUD' );
 update_option( 'woocommerce_allowed_countries', 'all' );
