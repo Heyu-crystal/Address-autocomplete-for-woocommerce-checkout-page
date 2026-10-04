@@ -8,7 +8,10 @@ let cachedProductId = null;
 
 async function addToCart( page ) {
 	cachedProductId = cachedProductId || ( await productId() );
-	await page.goto( '/?add-to-cart=' + cachedProductId );
+	// Add it on the cart page, so the "added to your cart" notice is shown (and used up)
+	// there: on the checkout, WooCommerce moves the focus to that notice after loading,
+	// which cuts off whatever is being typed.
+	await page.goto( '/cart/?add-to-cart=' + cachedProductId );
 }
 
 async function openBlockCheckout( page ) {
@@ -16,6 +19,31 @@ async function openBlockCheckout( page ) {
 	await page.goto( '/checkout/' );
 	await expect( page.locator( '#shipping-address_1' ) ).toBeVisible();
 	await waitForPlugin( page );
+	await page.waitForLoadState( 'networkidle' );
+}
+
+/**
+ * Wait until the block checkout has finished saving the address.
+ *
+ * WooCommerce sends address changes to the server (a new country at once, other fields
+ * after a 1.5 s pause) and redraws the form with the answer; typing during a redraw is lost.
+ *
+ * @param {import('@playwright/test').Page} page Page.
+ */
+async function waitForCheckoutIdle( page ) {
+	await page.waitForTimeout( 1600 );
+	await page.waitForFunction( () => {
+		const data = window.wp && window.wp.data;
+		const cart = data && data.select( 'wc/store/cart' );
+		if ( ! cart ) {
+			return true;
+		}
+		const updatingRates =
+			typeof cart.isAddressFieldsForShippingRatesUpdating ===
+				'function' && cart.isAddressFieldsForShippingRatesUpdating();
+		return ! cart.isCustomerDataUpdating() && ! updatingRates;
+	} );
+	await page.waitForLoadState( 'networkidle' );
 }
 
 async function openClassicCheckout( page ) {
@@ -36,9 +64,22 @@ async function waitForPlugin( page ) {
  * @param {string}                             text  Text.
  */
 async function typeAddress( input, text ) {
-	await input.click();
-	await input.fill( '' );
-	await input.pressSequentially( text, { delay: 40 } );
+	// If the checkout redraws mid-typing, the browser drops the keys: type again.
+	for ( let attempt = 0; attempt < 3; attempt++ ) {
+		await input.click();
+		await input.fill( '' );
+		await input.pressSequentially( text, { delay: 40 } );
+		const landed = await input.evaluate(
+			( el, expected ) =>
+				el.value === expected && el.ownerDocument.activeElement === el,
+			text
+		);
+		if ( landed ) {
+			return;
+		}
+	}
+	await expect( input ).toHaveValue( text );
+	await expect( input ).toBeFocused();
 }
 
 function pluginList( page ) {
@@ -72,8 +113,12 @@ async function blockStoreAddress( page, type = 'shipping' ) {
 }
 
 async function selectBlockCountry( page, type, country ) {
-	await page.locator( `#${ type }-country` ).selectOption( country );
-	await page.waitForTimeout( 300 );
+	const select = page.locator( `#${ type }-country` );
+	if ( ( await select.inputValue() ) === country ) {
+		return;
+	}
+	await select.selectOption( country );
+	await waitForCheckoutIdle( page );
 }
 
 async function fillBlockContact( page ) {
@@ -122,6 +167,7 @@ module.exports = {
 	pickFromPluginList,
 	blockStoreAddress,
 	selectBlockCountry,
+	waitForCheckoutIdle,
 	fillBlockContact,
 	placeBlockOrder,
 	login,

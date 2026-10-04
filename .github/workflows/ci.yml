@@ -108,6 +108,16 @@ jobs:
         run: npx playwright test
         env:
           WP_BASE_URL: http://localhost:8889
+      - name: Show what the failed tests saw
+        if: failure()
+        run: |
+          npx wp-env run tests-cli wp plugin list --fields=name,status,version || true
+          for f in test-results/*/error-context.md; do
+            [ -f "$f" ] || continue
+            echo "::group::$f"
+            cat "$f"
+            echo "::endgroup::"
+          done
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
