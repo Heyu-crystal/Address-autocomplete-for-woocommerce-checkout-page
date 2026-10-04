@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<ruleset name="Address Autocomplete for WooCommerce">
+	<description>WordPress Coding Standards, PHP 7.4+ compatibility.</description>
+
+	<file>.</file>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/build/*</exclude-pattern>
+	<exclude-pattern>/test-results/*</exclude-pattern>
+	<exclude-pattern>/playwright-report/*</exclude-pattern>
+	<exclude-pattern>*.js</exclude-pattern>
+	<exclude-pattern>*.mjs</exclude-pattern>
+	<exclude-pattern>*.css</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+
+	<config name="minimum_wp_version" value="6.3"/>
+	<config name="testVersion" value="7.4-"/>
+
+	<rule ref="WordPress"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="address-autocomplete-for-woocommerce"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.WP.Capabilities">
+		<properties>
+			<property name="custom_capabilities" type="array">
+				<element value="manage_woocommerce"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="aafwc"/>
+				<element value="AAFWC"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- The e2e helper plugin is test-only code. -->
+	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+</ruleset>

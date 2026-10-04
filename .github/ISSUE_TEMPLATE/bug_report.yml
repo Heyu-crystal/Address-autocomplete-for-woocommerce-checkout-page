@@ -1,0 +1,95 @@
+name: Bug report
+description: Suggestions do not appear, fields fill wrongly, or something else is broken.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! Please **never paste your Google API key** here.
+        First check the status panel at WooCommerce > Settings > Integration > Address Autocomplete and the "Test my key" button.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+      description: Include the address you typed (or a similar public address) and which field filled wrongly.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to the checkout
+        2. Choose country ...
+        3. Type ...
+    validations:
+      required: true
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: wordpress
+    attributes:
+      label: WordPress version
+    validations:
+      required: true
+  - type: input
+    id: woocommerce
+    attributes:
+      label: WooCommerce version
+    validations:
+      required: true
+  - type: input
+    id: php
+    attributes:
+      label: PHP version
+    validations:
+      required: true
+  - type: input
+    id: theme
+    attributes:
+      label: Theme (name and version)
+    validations:
+      required: true
+  - type: dropdown
+    id: checkout
+    attributes:
+      label: Where does it happen?
+      multiple: true
+      options:
+        - Block checkout
+        - Classic (shortcode) checkout
+        - My Account > Addresses
+        - Cart shipping calculator
+        - A custom or third-party form
+    validations:
+      required: true
+  - type: dropdown
+    id: list
+    attributes:
+      label: Which suggestion list do you see?
+      options:
+        - The plugin's own list
+        - WooCommerce's built-in list
+        - None
+        - Two lists at once
+  - type: textarea
+    id: plugins
+    attributes:
+      label: Other checkout, performance or caching plugins
+      description: e.g. CheckoutWC, FunnelKit, Fluid Checkout, SiteGround Speed Optimizer, WP Rocket, Cloudflare Rocket Loader, Autoptimize, LiteSpeed Cache.
+  - type: textarea
+    id: console
+    attributes:
+      label: Browser Console output
+      description: Open the browser's developer tools (F12) > Console while typing an address, logged in as a shop manager (extra messages appear for shop managers). Remove your API key if it appears.
+      render: text
+  - type: textarea
+    id: status
+    attributes:
+      label: Status panel
+      description: A screenshot or copy of WooCommerce > Settings > Integration > Address Autocomplete > Status.

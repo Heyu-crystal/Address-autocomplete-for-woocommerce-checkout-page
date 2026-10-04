@@ -1,0 +1,28 @@
+{
+	"name": "heyu-crystal/address-autocomplete-for-woocommerce",
+	"description": "Google address suggestions for the WooCommerce checkout (block and classic) and My Account addresses.",
+	"type": "wordpress-plugin",
+	"authors": [
+		{
+			"name": "HeyU Jewellery"
+		}
+	],
+	"require": {
+		"php": ">=7.4"
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"squizlabs/php_codesniffer": "^3.10",
+		"wp-coding-standards/wpcs": "^3.1"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"scripts": {
+		"lint": "phpcs",
+		"lint:fix": "phpcbf"
+	}
+}

@@ -1,0 +1,20 @@
+{
+	"core": null,
+	"phpVersion": "8.2",
+	"plugins": [
+		"https://downloads.wordpress.org/plugin/woocommerce.latest-stable.zip"
+	],
+	"mappings": {
+		"wp-content/plugins/address-autocomplete-for-woocommerce": ".",
+		"wp-content/mu-plugins/aafwc-e2e.php": "./tests/e2e/setup/mu-plugin.php"
+	},
+	"env": {
+		"tests": {
+			"config": {
+				"AAFWC_E2E": true,
+				"WP_DEBUG": true,
+				"SCRIPT_DEBUG": false
+			}
+		}
+	}
+}
