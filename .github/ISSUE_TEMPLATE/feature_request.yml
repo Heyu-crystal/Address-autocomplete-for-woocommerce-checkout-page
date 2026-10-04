@@ -1,0 +1,15 @@
+name: Feature request or country fix
+description: A new setting, a new form, or better address parsing for a country.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like?
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example address (for country fixes)
+      description: A public address, what the plugin fills today, and what each field should contain.

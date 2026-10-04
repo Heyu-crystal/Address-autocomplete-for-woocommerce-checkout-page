@@ -1,0 +1,46 @@
+name: Release
+
+# Push a tag such as v1.0.0 to build the plugin zip and publish a GitHub release.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check that the tag matches the plugin version
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          HEADER=$(grep -m1 -E '^\s*\*\s*Version:' address-autocomplete-for-woocommerce.php | awk '{print $NF}')
+          CONSTANT=$(grep -m1 "define( 'AAFWC_VERSION'" address-autocomplete-for-woocommerce.php | sed -E "s/.*'([0-9][^']*)'.*/\1/")
+          STABLE=$(grep -m1 -E '^Stable tag:' readme.txt | awk '{print $NF}')
+          echo "tag=$TAG header=$HEADER constant=$CONSTANT readme=$STABLE"
+          test "$TAG" = "$HEADER" && test "$TAG" = "$CONSTANT" && test "$TAG" = "$STABLE"
+          grep -q "^## \[$TAG\]" CHANGELOG.md
+
+      - name: Build the zip
+        run: bash bin/build-zip.sh
+
+      - name: Release notes from CHANGELOG.md
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          awk -v tag="$TAG" '
+            $0 ~ "^## \\[" tag "\\]" { on = 1; next }
+            on && /^## \[/ { exit }
+            on { print }
+          ' CHANGELOG.md > release-notes.md
+          cat release-notes.md
+
+      - name: Publish the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" build/address-autocomplete-for-woocommerce.zip \
+            --title "Address Autocomplete for WooCommerce ${GITHUB_REF_NAME#v}" \
+            --notes-file release-notes.md

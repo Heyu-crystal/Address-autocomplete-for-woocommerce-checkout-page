@@ -1,0 +1,548 @@
+# Copyright (C) 2026 HeyU Jewellery
+# This file is distributed under the MIT with Commons Clause.
+msgid ""
+msgstr ""
+"Project-Id-Version: Address Autocomplete for WooCommerce 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/heyu-crystal/address-autocomplete-for-wp-woocommerce-checkout-page/issues\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-04T06:51:27+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: address-autocomplete-for-woocommerce\n"
+
+#. Plugin Name of the plugin
+#: address-autocomplete-for-woocommerce.php
+#: includes/class-aafwc-admin.php:259
+msgid "Address Autocomplete for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: address-autocomplete-for-woocommerce.php
+msgid "https://github.com/heyu-crystal/address-autocomplete-for-wp-woocommerce-checkout-page"
+msgstr ""
+
+#. Description of the plugin
+#: address-autocomplete-for-woocommerce.php
+msgid "Google address suggestions for the WooCommerce checkout (block and classic) and My Account addresses. Picks an address and fills street, apartment, city, state, postcode and country into their own fields."
+msgstr ""
+
+#. Author of the plugin
+#: address-autocomplete-for-woocommerce.php
+msgid "HeyU Jewellery"
+msgstr ""
+
+#: includes/class-aafwc-address-provider.php:22
+msgid "Google (Address Autocomplete for WooCommerce)"
+msgstr ""
+
+#. translators: Required attribution for Google's data. Keep the product name "Google Maps" unchanged.
+#: includes/class-aafwc-address-provider.php:26
+#: includes/class-aafwc-frontend.php:186
+msgid "Google Maps"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:41
+msgid "Settings"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:61
+msgid "Testing…"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:62
+msgid "The test could not run. Reload the page and try again."
+msgstr ""
+
+#: includes/class-aafwc-admin.php:75
+msgid "You are not allowed to do this."
+msgstr ""
+
+#: includes/class-aafwc-admin.php:82
+msgid "Enter an API key first."
+msgstr ""
+
+#. translators: %d: number of suggestions Google returned.
+#: includes/class-aafwc-admin.php:90
+#, php-format
+msgid "The key works: Google returned %d suggestion."
+msgid_plural "The key works: Google returned %d suggestions."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-aafwc-admin.php:109
+msgid "Yes"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:110
+msgid "No"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:116
+msgid "Plugin version"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:117
+msgid "Enabled"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:118
+msgid "Google API key saved"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:120
+#: includes/class-aafwc-integration.php:51
+msgid "Requests to Google"
+msgstr ""
+
+#. translators: %s: REST API address of the proxy.
+#: includes/class-aafwc-admin.php:123
+#, php-format
+msgid "Server proxy (%s)"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:124
+msgid "Browser (the key is visible in the page: restrict it to your website)"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:128
+msgid "WooCommerce version"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:133
+msgid "Conflicts"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:134
+msgid "None found"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:142
+msgid "Consent"
+msgstr ""
+
+#. translators: %s: consent category.
+#: includes/class-aafwc-admin.php:145
+#, php-format
+msgid "Waits for \"%s\" consent (WP Consent API is active)."
+msgstr ""
+
+#. translators: %s: consent category.
+#: includes/class-aafwc-admin.php:147
+#, php-format
+msgid "Set to wait for \"%s\" consent, but the WP Consent API plugin is not active, so no suggestions are shown."
+msgstr ""
+
+#: includes/class-aafwc-admin.php:176
+msgid "Suggestion list on WooCommerce forms"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:180
+msgid "WooCommerce > Settings > General > Address autocomplete"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:183
+msgid "The plugin's own list"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:187
+msgid "None: \"WooCommerce built-in only\" needs WooCommerce 10.3 or newer. Choose \"Automatic\"."
+msgstr ""
+
+#: includes/class-aafwc-admin.php:189
+msgid "The plugin's own list (WooCommerce's built-in list needs WooCommerce 10.3 or newer)"
+msgstr ""
+
+#. translators: %s: settings path.
+#: includes/class-aafwc-admin.php:194
+#, php-format
+msgid "None: tick %s, or choose \"Automatic\"."
+msgstr ""
+
+#. translators: %s: settings path.
+#: includes/class-aafwc-admin.php:197
+#, php-format
+msgid "The plugin's own list. To use WooCommerce's built-in list instead, tick %s."
+msgstr ""
+
+#: includes/class-aafwc-admin.php:199
+msgid "WooCommerce's built-in list, with Google results from this plugin"
+msgstr ""
+
+#. translators: %s: name of another address provider.
+#: includes/class-aafwc-admin.php:205
+#, php-format
+msgid "WooCommerce prefers \"%s\"; this plugin is used where that provider cannot search."
+msgstr ""
+
+#: includes/class-aafwc-admin.php:209
+msgid "The plugin's own list still serves the shipping calculator and custom forms."
+msgstr ""
+
+#. translators: %s: names of other address providers.
+#: includes/class-aafwc-admin.php:233
+#, php-format
+msgid "WooCommerce's built-in address autocomplete is on with another provider (%s). Its list is used on the checkout instead of this plugin's, because only one list may open on a field. Untick WooCommerce > Settings > General > Address autocomplete, or choose \"Automatic\"."
+msgstr ""
+
+#: includes/class-aafwc-admin.php:238
+msgid "The earlier \"HeyU Address Autocomplete\" plugin is active. Deactivate it; its settings were imported."
+msgstr ""
+
+#: includes/class-aafwc-admin.php:241
+msgid "The \"WooCommerce Google Address Autocomplete\" plugin is active. Deactivate it."
+msgstr ""
+
+#: includes/class-aafwc-admin.php:244
+msgid "The \"Autocomplete Google Address\" plugin is active. Deactivate it."
+msgstr ""
+
+#: includes/class-aafwc-admin.php:256
+msgid "Address Autocomplete for WooCommerce sends the address text customers type to Google to suggest addresses."
+msgstr ""
+
+#: includes/class-aafwc-admin.php:257
+msgid "Suggested text:"
+msgstr ""
+
+#: includes/class-aafwc-admin.php:258
+msgid "When you type an address in our checkout or account address forms, the characters you type, a random session identifier and, when you choose a suggestion, the identifier of the chosen place are sent to Google (Google Places API) to suggest and complete addresses. Your browser also sends Google its IP address and browser information with these requests. Google processes this information under its own privacy policy: https://policies.google.com/privacy. We do not send your name, email address, phone number or order details to Google."
+msgstr ""
+
+#: includes/class-aafwc-frontend.php:184
+msgid "Address suggestions"
+msgstr ""
+
+#. translators: %d: number of suggestions (always 1).
+#: includes/class-aafwc-frontend.php:188
+#, php-format
+msgid "%d address suggestion available. Use the up and down arrow keys to review it and Enter to select it."
+msgstr ""
+
+#. translators: %d: number of suggestions.
+#: includes/class-aafwc-frontend.php:190
+#, php-format
+msgid "%d address suggestions available. Use the up and down arrow keys to review them and Enter to select one."
+msgstr ""
+
+#: includes/class-aafwc-frontend.php:191
+msgid "Address filled in."
+msgstr ""
+
+#. translators: %s: site address.
+#: includes/class-aafwc-google.php:134
+#, php-format
+msgid "The key's website restriction does not allow %s. In Google Cloud > Credentials, add your site with and without \"www\", e.g. https://example.com/* and *.example.com/* (no \"https://\" before the \"*\")."
+msgstr ""
+
+#: includes/class-aafwc-google.php:136
+msgid "The key's API restrictions do not include \"Places API (New)\". Add it in Google Cloud > Credentials > your key > API restrictions."
+msgstr ""
+
+#: includes/class-aafwc-google.php:138
+msgid "\"Places API (New)\" is not enabled for this Google Cloud project. Enable it in Google Cloud > APIs & Services > Library."
+msgstr ""
+
+#: includes/class-aafwc-google.php:140
+msgid "Google does not recognise this API key. Copy it again from Google Cloud > Credentials."
+msgstr ""
+
+#: includes/class-aafwc-google.php:142
+msgid "Billing is not enabled for this Google Cloud project. Google requires a billing account even for the free monthly usage."
+msgstr ""
+
+#: includes/class-aafwc-google.php:144
+msgid "The key is restricted to other IP addresses. IP restrictions only suit the server proxy mode, and must list this server's IP address."
+msgstr ""
+
+#: includes/class-aafwc-google.php:147
+msgid "This server could not reach Google. Check outgoing connections (firewall, WP_HTTP_BLOCK_EXTERNAL)."
+msgstr ""
+
+#: includes/class-aafwc-google.php:150
+msgid "Google's quota for this key was reached. Check the quotas and billing in Google Cloud."
+msgstr ""
+
+#: includes/class-aafwc-google.php:153
+msgid "Google refused the key. Check that \"Places API (New)\" is enabled, billing is on, and the key restrictions allow this site."
+msgstr ""
+
+#: includes/class-aafwc-google.php:155
+msgid "Google returned an error. See the details below."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:20
+msgid "Address Autocomplete"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:21
+msgid "Google address suggestions on the checkout and My Account address forms. Needs a Google Cloud API key with \"Places API (New)\" enabled."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:35
+msgid "Google"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:39
+msgid "Enable"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:41
+msgid "Show address suggestions"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:45
+msgid "Google API key"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:47
+msgid "Enable \"Places API (New)\" for this key. In \"Browser\" mode the key is visible in the page source, so restrict it to your website and to \"Places API (New)\" in Google Cloud > Credentials."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:54
+msgid "Browser: the customer's browser asks Google (fastest; key visible in the page)"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:55
+msgid "Server proxy: your site asks Google (key hidden; adds load to your server)"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:57
+msgid "The server proxy sends every search through your site (a REST endpoint with a nonce and a per-visitor rate limit). Each keystroke pause becomes one PHP request on your server."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:61
+#: includes/class-aafwc-integration.php:65
+msgid "Suggestion list"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:68
+msgid "Automatic: WooCommerce built-in when it is on and working, otherwise the plugin's own"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:69
+msgid "WooCommerce built-in only"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:70
+msgid "Plugin's own list only"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:72
+msgid "WooCommerce 10.3+ has its own address autocomplete (WooCommerce > Settings > General > Address autocomplete). This plugin registers Google as a provider for it. Only one list ever opens on a field."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:76
+msgid "Where"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:78
+msgid "Block checkout"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:83
+msgid "Classic (shortcode) checkout"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:88
+msgid "My Account > Addresses"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:93
+msgid "Classic cart shipping calculator (suggests cities and postcodes in the City field)"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:95
+msgid "Third-party checkouts that keep WooCommerce's field ids (CheckoutWC, FunnelKit, Fluid Checkout) work as \"Classic checkout\"."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:98
+msgid "Custom address fields"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:102
+msgid "For other forms: one \"field: CSS selector\" per line. Only address_1 (the field people type in) is required. Separate several forms with a blank line. Other fields are looked up inside the same &lt;form&gt; first."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:106
+msgid "Load scripts on"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:109
+msgid "Every page (safest; the scripts are small and do nothing without an address field)"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:110
+msgid "Checkout, cart and account pages only"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:112
+msgid "Some block themes make WooCommerce's page detection unreliable. If suggestions stop appearing, choose \"Every page\"."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:116
+msgid "Countries and language"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:120
+msgid "Country"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:122
+msgid "Only suggest addresses in the country the customer has selected"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:126
+msgid "Limit to countries (optional)"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:128
+msgid "Two-letter codes separated by commas, e.g. AU,NZ,US,GB,CA. No suggestions are shown for other countries. Leave empty for all countries."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:132
+msgid "Language"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:134
+msgid "Language of the suggestions, e.g. en, de, ja or pt-BR. Leave empty to use the language of the page."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:138
+msgid "Address format"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:142
+msgid "Street names"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:145
+msgid "Full (\"Miller Street\")"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:146
+msgid "Abbreviated (\"Miller St\")"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:151
+msgid "Apartment / unit"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:154
+msgid "Separate field (\"Apartment, suite, etc.\")"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:155
+msgid "Australia and New Zealand: in the street line (\"5/100 Miller St\"); elsewhere: separate"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:157
+msgid "An apartment the customer typed is never erased or replaced."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:161
+msgid "Cost control"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:163
+msgid "Google bills the key owner. Each picked address is one billing session; waiting for a pause in typing and a minimum length keeps the number of requests down."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:166
+msgid "Minimum characters"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:173
+msgid "Characters typed before suggestions are requested (default 3)."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:177
+msgid "Typing pause (ms)"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:184
+msgid "Wait this long after the last keystroke before asking Google (default 220)."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:188
+msgid "Privacy"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:192
+msgid "Wait for consent"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:195
+msgid "No: suggestions work without consent"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:196
+msgid "Functional"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:197
+msgid "Preferences"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:198
+msgid "Anonymous statistics"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:199
+msgid "Statistics"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:200
+msgid "Marketing"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:202
+msgid "With a category chosen, nothing is sent to Google until the visitor consents to it in a cookie banner that supports the WP Consent API. Without the WP Consent API plugin, no suggestions are shown at all."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:206
+msgid "Colours (optional)"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:208
+msgid "Leave empty for the neutral defaults. Themes can also override the CSS variables --aafwc-bg, --aafwc-text, --aafwc-hover, --aafwc-muted and --aafwc-line."
+msgstr ""
+
+#: includes/class-aafwc-integration.php:211
+msgid "Background"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:218
+msgid "Text"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:225
+msgid "Highlighted suggestion"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:338
+msgid "Status"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:349
+msgid "Test my key"
+msgstr ""
+
+#: includes/class-aafwc-integration.php:350
+msgid "Sends one request from this server to Places API (New) with the key in the field below (saved or not), using your site address as the referrer. It finds a disabled API, a wrong key, missing billing and a website restriction that excludes this site address. It cannot reproduce every browser check (for example a checkout on another domain or subdomain), so also try a real address on your checkout."
+msgstr ""
+
+#: includes/class-aafwc-plugin.php:85
+msgid "Address Autocomplete for WooCommerce needs WooCommerce to be installed and active."
+msgstr ""
+
+#: includes/class-aafwc-rest-proxy.php:120
+msgid "The page has expired. Reload it and try again."
+msgstr ""
+
+#: includes/class-aafwc-rest-proxy.php:123
+msgid "Too many address searches. Wait a minute and try again."
+msgstr ""

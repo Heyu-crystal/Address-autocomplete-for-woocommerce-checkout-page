@@ -1,0 +1,113 @@
+/*
+ * Address Autocomplete for WooCommerce: suggestion list.
+ * Restyle it by changing the variables (or use the colour settings), e.g.
+ *   .aafwc { --aafwc-bg: #fff; --aafwc-hover: #f0f0f0; }
+ */
+.aafwc {
+	--aafwc-bg: #fff;
+	--aafwc-hover: #f0f0f1;
+	--aafwc-text: #1e1e1e;
+	--aafwc-muted: #646970;
+	--aafwc-mark: inherit;
+	--aafwc-line: rgba(0, 0, 0, 0.12);
+	--aafwc-radius: 4px;
+	--aafwc-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+	position: fixed;
+	z-index: 100000;
+	display: none;
+	box-sizing: border-box;
+	overflow: hidden;
+	border: 1px solid var(--aafwc-line);
+	border-radius: var(--aafwc-radius);
+	background: var(--aafwc-bg);
+	box-shadow: var(--aafwc-shadow);
+	color: var(--aafwc-text);
+	font-size: 14px;
+	line-height: 1.4;
+	text-align: start;
+}
+
+.aafwc.is-open {
+	display: block;
+}
+
+.aafwc__list {
+	max-height: 280px;
+	margin: 0;
+	padding: 0;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	list-style: none;
+}
+
+.aafwc__item {
+	margin: 0;
+	padding: 10px 14px;
+	border-top: 1px solid var(--aafwc-line);
+	color: var(--aafwc-text);
+	cursor: pointer;
+}
+
+.aafwc__item:first-child {
+	border-top: 0;
+}
+
+.aafwc__item:hover,
+.aafwc__item.is-active {
+	background: var(--aafwc-hover);
+}
+
+.aafwc__item.is-active {
+	outline: 2px solid currentColor;
+	outline-offset: -2px;
+}
+
+.aafwc__main mark {
+	background: none;
+	color: var(--aafwc-mark);
+	font-weight: 600;
+}
+
+.aafwc__secondary {
+	margin-inline-start: 8px;
+	color: var(--aafwc-muted);
+	font-size: 12px;
+}
+
+/* Google requires this attribution when suggestions are shown without a Google map. Keep it visible. */
+.aafwc__attribution {
+	display: flex;
+	justify-content: flex-end;
+	padding: 6px 14px;
+	border-top: 1px solid var(--aafwc-line);
+	color: #5e5e5e;
+	background: var(--aafwc-bg);
+	font-family: Roboto, Arial, sans-serif;
+	font-size: 12px;
+	letter-spacing: 0;
+}
+
+.aafwc-visually-hidden {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	margin: -1px !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
+
+@media (max-width: 600px) {
+	.aafwc__secondary {
+		display: block;
+		margin: 2px 0 0;
+	}
+}
+
+@media (forced-colors: active) {
+	.aafwc__item.is-active {
+		outline-color: Highlight;
+	}
+}

@@ -1,0 +1,128 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-js:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint:js
+
+  lint-php:
+    name: PHPCS (WordPress Coding Standards)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer
+          coverage: none
+      - run: composer install --no-interaction --no-progress
+      - run: vendor/bin/phpcs
+
+  php-syntax:
+    name: PHP ${{ matrix.php }} syntax
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      - name: php -l
+        run: find . -name '*.php' -not -path './vendor/*' -not -path './node_modules/*' -print0 | xargs -0 -n1 php -l
+
+  unit:
+    name: Unit tests (address parser)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:unit
+
+  e2e:
+    name: E2E (WooCommerce ${{ matrix.woocommerce }}, PHP ${{ matrix.php }})
+    needs: [lint-js, unit]
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - woocommerce: latest-stable
+            php: '8.3'
+          # PHP 7.4 is covered by the syntax job and PHPCompatibility: wp-env's PHP 7.4
+          # image (Debian bullseye) can no longer be built.
+          - woocommerce: '10.9.4'
+            php: '8.1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Choose WooCommerce and PHP versions
+        run: |
+          cat > .wp-env.override.json <<JSON
+          {
+            "phpVersion": "${{ matrix.php }}",
+            "plugins": [ "https://downloads.wordpress.org/plugin/woocommerce.${{ matrix.woocommerce }}.zip" ]
+          }
+          JSON
+      - name: Start WordPress
+        run: npx wp-env start
+      - name: Seed the test shop
+        run: npm run env:seed
+      - name: Check the test shop answers on pretty URLs
+        run: curl -sSf -o /dev/null http://localhost:8889/custom-address-form/
+      - name: Run Playwright
+        run: npx playwright test
+        env:
+          WP_BASE_URL: http://localhost:8889
+      - name: Show what the failed tests saw
+        if: failure()
+        run: |
+          npx wp-env run tests-cli wp plugin list --fields=name,status,version || true
+          for f in test-results/*/error-context.md; do
+            [ -f "$f" ] || continue
+            echo "::group::$f"
+            cat "$f"
+            echo "::endgroup::"
+          done
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report-wc-${{ matrix.woocommerce }}-php-${{ matrix.php }}
+          path: |
+            playwright-report
+            test-results
+          retention-days: 7
